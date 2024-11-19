@@ -1,0 +1,16 @@
+{
+  "name": "DSA",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "type": "module",
+  "keywords": [],
+  "author": "Joe Kerr",
+  "license": "MIT",
+  "devDependencies": {
+    "@swc/cli": "^0.5.0",
+    "@swc/core": "^1.9.1",
+    "mocha": "^10.8.2"
+  }
+}
