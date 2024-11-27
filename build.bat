@@ -1,0 +1,1 @@
+npx swc ./src -d ./js
