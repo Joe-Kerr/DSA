@@ -8,15 +8,12 @@ const SAMPLES = 1_000;
 ///////////////////////////
 
 const measurement = new Measurement();
-
 measurement.SAMPLES = SAMPLES;
 measurement.SPIN_UP = SPIN_UP;
-
 measurement.fillTestArray = function() {
 	this.masterTestArray = new Array(ARRAY_SIZE);
 	this.masterTestArray.fill(Math.random());
 }
-
 measurement.prepareTestArray = function() {
 	return this.masterTestArray;
 }
