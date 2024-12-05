@@ -1,6 +1,7 @@
-import {NumberArray} from "../types.js";
+import {NumberArrayLike} from "../types.js";
 
-function partition(arr : NumberArray, lo : number, hi : number) {
+// Performs worse. No point really in keeping it anymore (?).
+function partitionLomutoAlgo(arr : NumberArrayLike, lo : number, hi : number) {
     let pivot: number = arr[hi];
     let i=lo-1;
     let swap=0;
@@ -25,18 +26,53 @@ function partition(arr : NumberArray, lo : number, hi : number) {
     return i+1;
 }
 
-function quickSortRecur(arr : NumberArray, lo : number, hi: number) {
-    if(lo < hi) {
-        const pivotIdx = partition(arr, lo, hi);
+// About ~0.3ms slower than js native sort. #todo
+// See also https://www.geeksforgeeks.org/hoares-vs-lomuto-partition-scheme-quicksort/
+function partitionWhoreAlgo(arr : NumberArrayLike, lo : number, hi : number) {
+    let pivot = arr[lo];
+    let i=lo-1;
+    let j=hi+1;
+    let swap = 0;
 
-        /**pivot must be exclusive! */
-        quickSortRecur(arr, lo, pivotIdx-1);        
+    const max = arr.length - 1;
+    let safety = arr.length;
+
+    while(safety-- >= 0) {
+        do {
+            i++;
+        } 
+        while (arr[i] < pivot && i <= max);
+
+        do {
+            j--;
+        } 
+        while (arr[j] > pivot && j >= 0);
+
+        if(i < j) {
+            swap = arr[i];
+            arr[i] = arr[j];
+            arr[j] = swap;
+        }
+
+        else {
+            break;
+        }
+    }
+    
+    return j;
+}
+
+function quickSortRecur(arr : NumberArrayLike, lo : number, hi: number) {
+    if(lo < hi) {
+        const pivotIdx = partitionWhoreAlgo(arr, lo, hi);
+
+        //quickSortRecur(arr, lo, pivotIdx-1); //Lomuto partition  
+        quickSortRecur(arr, lo, pivotIdx);     //Whore partition  
         quickSortRecur(arr, pivotIdx+1, hi);        
     }
-
 }
 
 /**@link https://www.youtube.com/watch?v=VNrF8ugTUkI */
-export function quickSort(arr : NumberArray) {
+export function quickSort(arr : NumberArrayLike) {
     quickSortRecur(arr, 0, arr.length - 1);
 }
