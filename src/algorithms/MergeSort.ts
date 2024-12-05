@@ -1,8 +1,8 @@
-import {NumberArray} from "../types.js";
+import {NumberArrayLike} from "../types.js";
 
 export const stats = {iterations: 0};
 
-function merge(arr : NumberArray, l : number, r : number, mid : number) {
+function merge(arr : NumberArrayLike, l : number, r : number, mid : number) {
     //slice end is exclusive
     const lArr = arr.slice(l, mid+1);
     const rArr = arr.slice(mid+1, r+1); 
@@ -44,7 +44,7 @@ function merge(arr : NumberArray, l : number, r : number, mid : number) {
     stats.iterations += c;
 }
 
-function recurMergeSort(arr : NumberArray, l : number, r : number) {
+function recurMergeSort(arr : NumberArrayLike, l : number, r : number) {
     if(l < r) {        
         const mid = Math.floor( (l + r) / 2 );
         recurMergeSort(arr, l, mid);
@@ -54,7 +54,7 @@ function recurMergeSort(arr : NumberArray, l : number, r : number) {
 }
 
 /**@link https://youtu.be/hPzlKHFc3Y4?si=6Yi-VvAvplMVVgGA&t=570 (sorting) */
-export function mergeSort(arr : NumberArray) {
+export function mergeSort(arr : NumberArrayLike) {
     stats.iterations = 0;
     recurMergeSort(arr, 0, arr.length-1);
 }

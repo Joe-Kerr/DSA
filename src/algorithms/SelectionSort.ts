@@ -1,8 +1,8 @@
-import {NumberArray} from "../types.js";
+import {NumberArrayLike} from "../types.js";
 
 export const stats = {iterations: 0};
 
-export function selectionSort(arr : NumberArray) {
+export function selectionSort(arr : NumberArrayLike) {
     const n = arr.length;    
     let min = Infinity;
     let iswap = -1;
