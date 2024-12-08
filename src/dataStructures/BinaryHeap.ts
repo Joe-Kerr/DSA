@@ -93,7 +93,7 @@ export default class BinaryHeap {
         while(safety-- >= 0) {
             max = i;
             l = this.getLeftIndex(i);
-            r = this.getRightIndex(i);
+            r = l + 1;
     
             if(l < len && this.compare(this.arr, l, r) === true) {
                 max = l
@@ -120,16 +120,18 @@ export default class BinaryHeap {
         this.arr[i2] = tmp;        
     }
 
-    //#todo use bit shifts / then get rid of fn calls?
     private getParentIndex(index : number) {
-        return Math.floor( (index-1) / 2 );
+        //return Math.floor( (index-1) / 2 );
+        return (index-1) >> 1;
     }
 
     private getLeftIndex(index : number) {
-        return Math.floor( (2 * index) + 1 );
+        //return Math.floor( (2 * index) + 1 );
+        return (index << 1) + 1;
     }
 
     private getRightIndex(index : number) {
-        return Math.floor( (2 * index) + 2 );
+        //return Math.floor( (2 * index) + 2 );
+        return (index << 1) + 2;
     }
 }
