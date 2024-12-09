@@ -2,6 +2,7 @@ import assert from "node:assert";
 import {selectionSort, stats as selectionSortStats} from "../../js/src/algorithms/SelectionSort.js";
 import {mergeSort, stats as mergeSortStats} from "../../js/src/algorithms/MergeSort.js";
 import {quickSort} from "../../js/src/algorithms/QuickSort.js";
+import {countingSort} from "../../js/src/algorithms/CountingSort.js";
 
 suite("Sort algorithms");
 
@@ -15,7 +16,8 @@ const testData = [
 const testAlgos = {
 	selectionSort,
 	mergeSort,
-	quickSort
+	quickSort,
+	countingSort
 };
 
 function executeCase(algoName, algoFn, tcase) {
