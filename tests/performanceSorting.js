@@ -2,6 +2,7 @@ import Measurement from "./performanceCommon.js";
 import {selectionSort} from "../js/src/algorithms/SelectionSort.js";
 import {mergeSort} from "../js/src/algorithms/MergeSort.js";
 import {quickSort} from "../js/src/algorithms/QuickSort.js";
+import {countingSort} from "../js/src/algorithms/CountingSort.js";
 
 ///////////////////////////
 const ARRAY_SIZE = 1_000;
@@ -14,7 +15,7 @@ measurement.SAMPLES = SAMPLES;
 measurement.SPIN_UP = SPIN_UP;
 measurement.fillTestArray = function() {
 	this.masterTestArray = new Array(ARRAY_SIZE);
-	this.masterTestArray.fill(Math.random());
+	this.masterTestArray.fill( Math.floor(Math.random()*1000) );
 }
 measurement.prepareTestArray = function() {
 	return this.masterTestArray.map(val=>val)
@@ -34,6 +35,10 @@ measurement.measure("Merge", (testArray)=>{
 
 measurement.measure("Quick", (testArray)=>{	
 	quickSort(testArray)
+});
+
+measurement.measure("Counting", (testArray)=>{	
+	countingSort(testArray)
 });
 
 measurement.printStats();
