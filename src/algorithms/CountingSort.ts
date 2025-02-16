@@ -13,7 +13,7 @@ export function countingSort(array : NumberArrayLike) {
     const result = new Array(len);
     let i=0;
 
-    // #todo Any quicker way (this is probably +1 interation)
+    // #todo Any quicker way (this is probably +1 iteration)
     counting.fill(0);
 
     for(i=0; i<len; i++) {
@@ -25,6 +25,7 @@ export function countingSort(array : NumberArrayLike) {
         counting[i] += counting[i-1];
     }    
 
+    // reverse iteration makes algorithm stable (i.e. "preserves the order of equal elements")
     for(i=len-1; i>=0; i--) {
         result[ counting[array[i]] - 1] = array[i];
         counting[array[i]]--;        
@@ -33,7 +34,6 @@ export function countingSort(array : NumberArrayLike) {
     for(i=0; i<len; i++) {
         array[i] = result[i];
     }
-
 }
 
 export function checkCanCountingSort(array : ArrayLike<number>) {
