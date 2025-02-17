@@ -1,6 +1,6 @@
 export interface IGetGraphNeighbours {
-    /**Ensure only unique elements are added - not (yet) checked */
-    addNeighboursToRef(node : number, neighbourArray : number[]) : void
+    /**@deprecated Data structure to be decided - apparently performance of sets not too great */
+    addNeighboursToRef(node : number, neighbours : Set<number>) : void
 }
 
 //#todo performance tests
@@ -9,6 +9,7 @@ export function breadthFirstSearchFind(start : number, find : number, graph : IG
     /**@alias visited */
     const links = {};
     const path : number[] = [];
+    const neighbours = new Set<number>();
 
     let curNode : number|undefined = 0;
     let neighNode = 0;
@@ -21,19 +22,19 @@ export function breadthFirstSearchFind(start : number, find : number, graph : IG
             break;
         }
 
-        graph.addNeighboursToRef(curNode, front);
+        graph.addNeighboursToRef(curNode, neighbours);
 
-        for(let i=0; i<front.length; i++) {
-            neighNode = front[i];
-            
+        for(neighNode of neighbours) {
             //  neighNode == unvisited
             if(links[neighNode] === undefined) {
                 front.push(neighNode);
                 //Need to backtrack!
                 //links[curNode] = neighNode;
                 links[neighNode] = curNode;
-            }
+            }            
         }
+
+        neighbours.clear();
     }
 
     if(safety <= 0) {

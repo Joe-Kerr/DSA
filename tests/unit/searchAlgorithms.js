@@ -39,7 +39,9 @@ test("breadthFirstSearchFind simple path search", ()=>{
 	
 	function addNeighbours(node, out) {
 		if(graph[node]) {
-			out.push(...graph[node]);
+			graph[node].forEach((n)=>{
+				out.add(n);
+			});
 		}
 	}
 	
@@ -62,7 +64,9 @@ test("breadthFirstSearchFind no path possible", ()=>{
 	
 	function addNeighbours(node, out) {
 		if(graph[node]) {
-			out.push(...graph[node]);
+			graph[node].forEach((n)=>{
+				out.add(n);
+			});
 		}
 	}
 	
@@ -93,7 +97,9 @@ test("breadthFirstSearchFind cyclical path", ()=>{
 	
 	function addNeighbours(node, out) {
 		if(graph[node]) {
-			out.push(...graph[node]);
+			graph[node].forEach((n)=>{
+				out.add(n);
+			});
 		}
 	}
 	
