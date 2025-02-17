@@ -1,4 +1,5 @@
 export interface IGetGraphNeighbours {
+    /**Ensure only unique elements are added - not (yet) checked */
     addNeighboursToRef(node : number, neighbourArray : number[]) : void
 }
 
